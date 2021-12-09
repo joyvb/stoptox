@@ -1,0 +1,142 @@
+# [jQuery Scrollify](http://projects.lukehaas.me/scrollify)
+
+A jQuery plugin that assists scrolling and snaps to sections. Touch optimised. 
+
+5KB minified!
+
+## Demo
+
+[http://projects.lukehaas.me/scrollify](http://projects.lukehaas.me/scrollify).
+
+## Basic setup
+
+Scrollify requires jQuery 1.6+.
+
+The most basic setup is as follows:
+
+```
+<! doctype html>
+	<html>
+		<head>
+			<script>
+				$(function() {
+					$.scrollify({
+						section : "section",
+					});
+				});
+			</script>
+		</head>
+		<body>
+			<section></section>
+			<section></section>
+		</body>
+	</html>
+```
+
+## Configuration
+
+This is the default configuration:
+
+```
+$.scrollify({
+		section : "section",
+		sectionName : "section-name",
+		easing: "easeOutExpo",
+		scrollSpeed: 1100,
+		offset : 0,
+		scrollbars: true,
+		before:function() {},
+		after:function() {},
+		afterResize:function() {}
+	});
+```
+
+## Options
+
+`section`
+A selector for the sections.
+
+`sectionName`
+Scrollify lets you define a hash value for each section. This makes it possible to permalink to particular sections. This is set as a data attribute on the sections. The name of the data attribute is defined by `sectionName`.
+
+`easing`
+Define the easing method.
+
+`offset`
+A distance in pixels to offset each sections position by.
+
+`scrollbars`
+A boolean to define whether scroll bars are visible or not.
+
+`before`
+A callback that is called before a section is scrolled to via the move method. Arguments include the index of the section and an array of all section elements.
+
+`after`
+A callback that is called after a new section is scrolled to. Arguments include the index of the section and an array of all section elements.
+
+`afterResize`
+A callback that is called after the window is resized.
+
+## Methods
+
+`$.scrollify.move("#name");`
+
+The move method can be used to scroll to a particular section. It can be parsed the index of the section, or the name of the section preceded by a hash.
+
+`$.scrollify.instantMove("#name");`
+
+The instantMove method can be used to scroll to a particular section without animation. It can be parsed the index of the section, or the name of the section preceded by a hash.
+
+`$.scrollify.next()`
+
+The next method can be used to scroll to a panel that immediately follows the current panel.
+
+`$.scrollify.previous()`
+
+The previous method can be used to scroll to a panel that immediately precedes the current panel.
+
+`$.scrollify.instantNext()`
+
+The instantNext method can be used to scroll to a panel that immediately follows the current panel, without animation.
+
+`$.scrollify.instantPrevious()`
+
+The instantPrevious method can be used to scroll to a panel that immediately precedes the current panel.
+
+`$.scrollify.destroy()`
+
+The destroy methods removes all Scrollify events and removes set heights from the panels.
+
+`$.scrollify.update()`
+
+The update methods recalculates the heights and positions of the panels.
+
+`$.scrollify.current()`
+
+The current method returns the current section as a jQuery object.
+
+## Behaviour
+
+Scrollify will set a height on panels equal to the window height unless a panel is already equal to or greater than the window height. On scrolling up or down, Scrollify will snap the scoll position to a panel that is one along from the current panel, in the direction of scrolling. Scrolling can be done via the keyboards up and down arrows, the mouse wheel, a trackpad, or clicking and dragging the scroll bar. 
+
+If you are viewing a panel with a height that is greater than the window, Scrollify will only snap to another section if you are at the top or bottom of the panel, allowing for normal scrolling behaviour inbetween these points.
+
+## Browser Support
+
+![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
+--- | --- | --- | --- | --- |
+IE 7+ ✔ | Chrome ✔ | Firefox ✔ | Opera ✔ | Safari ✔ |
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -m 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request :)
+
+
+## License
+
+[MIT License](https://github.com/lukehaas/Scrollify/blob/master/LICENSE)
+

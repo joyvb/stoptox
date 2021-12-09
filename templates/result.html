@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>STopTox 1.0 | Home </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/fontawesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/animateit/animate.min.css') }}" rel="stylesheet">
+
+    <!-- Vendor css -->
+    <link href="{{ url_for('static', filename='vendor/owlcarousel/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
+
+    <!-- Template base -->
+    <link href="{{ url_for('static', filename='css/theme-base.css') }}" rel="stylesheet">
+
+    <!-- Template elements -->
+    <link href="{{ url_for('static', filename='css/theme-elements.css') }}" rel="stylesheet">
+
+    <!-- Responsive classes -->
+    <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+    <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+
+
+
+
+    <!-- Template color -->
+    <link href="{{ url_for('static', filename='css/color-variations/blue.css') }}" rel="stylesheet" type="text/css" media="screen" title="blue">
+
+    <!-- LOAD GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"
+
+    <!-- CSS CUSTOM STYLE -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}" media="screen" />
+
+    <!--VENDOR SCRIPT-->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/plugins-compressed.js') }}"></script>
+
+    <!-- REVOLUTION LAYERS STYLES -->
+  <style>
+    </style>
+    <style>.tp-caption.WebProduct-Title,.WebProduct-Title{color:rgba(51,51,51,1.00);font-size:90px;line-height:90px;font-weight:100;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px}.tp-caption.WebProduct-SubTitle,.WebProduct-SubTitle{color:rgba(153,153,153,1.00);font-size:15px;line-height:20px;font-weight:400;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px}.tp-caption.WebProduct-Content,.WebProduct-Content{color:rgba(153,153,153,1.00);font-size:16px;line-height:24px;font-weight:600;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px}</style>
+    <style type="text/css"> #rev_slider_4_1_wrapper .tp-loader.spinner2{ background-color: #FFFFFF !important; } </style>
+  <style type="text/css">.hephaistos .tp-bullet{width:12px;height:12px;position:absolute;background:rgba(153,153,153,1);border:3px solid rgba(255,255,255,0.9);border-radius:50%;cursor:pointer;box-sizing:content-box;  box-shadow:0px 0px 2px 1px rgba(130,130,130,0.3)}.hephaistos .tp-bullet:hover,.hephaistos .tp-bullet.selected{background:rgba(255,255,255,1);  border-color:rgba(0,0,0,1)}</style>
+
+
+    <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/rs-plugin/css/layers.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/rs-plugin/css/navigation.css') }}">
+
+    <!-- CSS CUSTOM STYLE -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/settings.css') }}">
+
+
+  <script type="text/javascript" language="javascript" src="{{ url_for('static', filename='js/jsme/jsme.nocache.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+<script>
+
+
+function saveJMECookie() {
+  var jme = document.JME.jmeFile();
+  document.cookie = "jme="+jme+";expires=Thu, 31 Dec 2020 00:00:00 GMT; path=/";
+}
+
+function readJMECookie() {
+  var editor = document.JME;
+  if (editor.smiles().length > 0) return; // editing already started
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf("jme=") == 0) {
+      var jme = c.substring(4,c.length);
+      editor.readMolecule(jme);
+      return;
+    }
+  }
+}
+
+function ShowLoading(e) {
+    var div = document.createElement('div');
+    var img = document.createElement('img');
+    img.src = '{{ url_for('static', filename='images/hourglass.svg') }}';
+    div.innerHTML = "<h2>Predicting...</h2><br />";
+    div.style.cssText = 'position: fixed; top: 40%; left: 40%; z-index: 5000; width: 300px; text-align: center;  border: 0px solid #000';
+    div.appendChild(img);
+    document.body.appendChild(div);
+    return true;
+        // These 2 lines cancel form submission, so only use if needed.
+        //window.event.cancelBubble = true;
+        //e.stopPropagation();
+}
+
+
+function submit(type) {
+  var jmesmiles = document.JME.smiles();
+  var boxsmiles = document.getElementById("smilesbox").value;
+  if (jmesmiles.length < 1 && boxsmiles.length < 1) {
+    alert("No molecule !");
+    return;
+  }
+  if (jmesmiles.length > 500 || boxsmiles.length > 500) {
+    alert("Cannot process polymers!");
+    return;
+  }
+
+  // smiles/name text has preference
+  var smiles = jmesmiles;
+ // document.form.source.value = "jme";
+  if (boxsmiles.length > 0) {
+    smiles = boxsmiles;
+
+    //document.JME.clear();
+  //  document.form.source.value = "text";
+  }
+
+
+  document.form.smiles.value = smiles;
+ // document.getElementById( "smi" ).value = smiles;
+  document.form.submit();
+}
+
+function urlencode(e) {
+  e = e.toString();
+  e = encodeURIComponent(e);
+  e = e.replace(/%20/g, '+');
+  return e;
+}
+
+function jsmeOnLoad() {
+
+jsmeApplet = new JSApplet.JSME("appletContainer", "460px", "340px", {
+"options" : "hydrogens" });
+
+document.JME = jsmeApplet;
+readJMECookie();
+document.getElementById("smilesbox").value="";
+}
+
+
+
+
+$(document).ready(function() {
+    $('#addnews').submit(function() {
+        setTimeout(gogo,1);
+    });
+});
+
+function gogo() {
+    $('#loading').show();
+}
+
+
+</script>
+
+
+
+
+<style type="text/css">
+
+
+
+
+.table > tbody > tr > td  {
+     text-align: center;
+     vertical-align: middle;
+}
+
+th, td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+
+.loading img{
+    float: right;
+}
+
+
+/* General CSS rules for every viewport, including large desktop screens */
+
+#main-img {
+
+    width: 100%;
+    height: auto;
+}
+
+
+@media screen and (max-width: 480px) {
+    #main-img{content:url("{{ url_for('static', filename='Pred-Skin-logo-480.png') }}") ;}
+    #main-img:after{content:url("{{ url_for('static', filename='Pred-Skin-logo-480.png') }}") ;}
+    body{ font-size: 9px;}
+}
+
+@media only screen  and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+    #main-img{content:url("{{ url_for('static', filename='Pred-Skin-logo-568.png') }}") ;}
+    #main-img:after{content:url("{{ url_for('static', filename='Pred-Skin-logo-568.png') }}") ;}
+}
+
+
+@media screen and (min-width: 768px) {
+    #main-img{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+    #main-img:after{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+    body{ font-size: 14px;}
+}
+@media (min-width: 992px) {
+      #main-img{content:url("{{ url_for('static', filename='Pred-Skin-logo.png') }}") ;}
+      #main-img:after{content:url("{{ url_for('static', filename='Pred-Skin-logo.png') }}") ;}
+}
+@media (min-width: 1200px) {
+     #main-img{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+     #main-img:after{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+     body{ font-size: 16px;}
+}
+
+</style>
+
+
+</head>
+
+<body class="wide">
+
+
+    <!-- WRAPPER -->
+    <div class="wrapper">
+
+       <!-- HEADER --><header id="header" class="">
+            <div id="header-wrap">
+                <div class="container">
+
+                    <!--LOGO-->
+                    <div id="logo">
+                        <a href="http://labmol.com.br" class="logo" data-dark-logo="{{ url_for('static', filename='images/logo-dark.png') }}">
+                            <img src="{{ url_for('static', filename='images/LabMol-LOGO-site.png') }}" alt="Polo Logo">
+                        </a>
+                    </div>
+                    <!--END: LOGO-->
+
+                    <!--MOBILE MENU -->
+                    <div class="nav-main-menu-responsive">
+                        <button class="lines-button x">
+                            <span class="lines"></span>
+                        </button>
+                    </div>
+                    <!--END: MOBILE MENU -->
+
+
+
+                    <!--TOP SEARCH -->
+                    <div id="top-search"> <a id="top-search-trigger"><i class="fa fa-search"></i><i class="fa fa-close"></i></a>
+                        <form action="search-results-page.html" method="get" data-toggle="validator">
+                            <input type="text" name="q" id="q" class="form-control" value="" placeholder="Start typing & press  &quot;Enter&quot;" required>
+                        </form>
+
+
+
+
+                    </div>
+                    <!--END: TOP SEARCH -->
+
+                    <!--NAVIGATION-->
+                    <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
+                        <div class="container">
+                            <nav id="mainMenu" class="main-menu mega-menu">
+                                <ul class="main-menu nav nav-pills">
+                                    <li><a href="hhttp://labmol.com.br"><i class="fa fa-home"></i></a></li>
+                                    <li><a href="http://www.labmol.com.br/research/">Research</a></li>
+                                    <li><a href="http://www.labmol.com.br/our-team/">Our Team</a></li>
+                                    <li class="dropdown"> <a href="http://www.labmol.com.br/web-apps/">Web Apps<span class="label label-danger infinit">HOT</span><i class="fa fa-angle-down"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                            <a href="http://www.labmol.com.br/predherg"> <i class="fa fa-heartbeat"></i>Pred-hERG <span class="label label-success">POPULAR</span></a>
+                                            </li>
+                                            <li>
+                                            <a href="http://www.labmol.com.br/predskin"> <i class="fa fa-warning"></i>Pred-Skin <span class="label label-success">POPULAR</span></a>
+                                            </li>
+                                            <li>
+                                            <a href="http://www.labmol.com.br/stoptox"> <i class="fa fa-warning"></i>STopTox <span class="label label-default">NEW</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="http://www.labmol.com.br/publications/">Publications</a></li>
+                                    <li><a href="http://www.labmol.com.br/get-in-touch/">Get in Touch</a></li>
+                                    <li><a href="http://www.labmol.com.br/news/">News</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!--END: NAVIGATION-->
+                </div>
+            </div>
+        </header>
+        <!-- END: HEADER -->
+
+<!-- Pred Single Molecule -->
+        <section class="background-white">
+            <div class="container">
+                <div class="text-center m-t-0">
+                    <h3 class="text-medium">STopTox Results</h3>
+                </div>
+
+
+
+                <!--Table-->
+                              <table id="tablePreview" class="table table-striped table-hover">
+                              <thead class="black white-text">
+                                <!--Table head-->
+                                <thead>
+                                 <thead class="black white-text">
+                                  <tr>
+                                    <th>Model #</th>
+                                    <th>Enpoint</th>
+                                    <th>Prediction</th>
+                                    <th>Confidence</th>
+                                    <th>Applicability domain (AD)</th>
+                                    <th>Probabilty Map</th>
+
+                                  </tr>
+                                </thead>
+                                <!--Table head-->
+                                <!--Table body-->
+                                <tbody>
+                                  <tr>
+                                    <th scope="row"  style="text-align: center; vertical-align: middle;" >1</th>
+                                    <td>
+                                      <p><span style="text-decoration: underline;"><strong>Acute Inhalation Toxicity</strong></span></p>
+                                      <p style="font-size:14px"><strong> Assay type</strong>: Acute inhalation toxicity test (OECD TG 403 and 436)</p>
+                                      <p  style="font-size:14px"><strong>Animal</strong>: rat</p>
+                                      <p style="font-size:14px"><strong>Machine Learning Algorithm</strong>: Random Forest</p>
+                                      <p style="font-size:14px"><strong> Descriptors</strong>: MACCS</p>
+                                      <p style="font-size:14px"><strong>Dataset</strong>: 681 compounds</p>
+                                    </td>
+                                     {% if res == "Toxic (+)" %}
+                                      <td align="center" class="Toxic (+)"> <font size="4" color="#C70039" ><strong> {{ res }} </strong></font></td>
+                                      {% else %}
+                                      <td align="center" class="Non-Toxic (-)"> <font size="4" color="#008000" ><strong> {{res}} </strong></font></td>
+                                      {% endif %}
+                                    <td> {{binaryproba}} </td>
+                                    <td> {{AD_acute}} <br> (Value=  {{AD_Acute_inhal}}  and limit = {{limit_Acute_inhal}} ) </td>
+                                    <td><img class="center-block" src="data:image/png;base64,{{ fname }}" height="400" width="400" alt="IMAGE" class="img-results"></td>
+
+
+
+                                  </tr>
+                                  <tr>
+                                    <th scope="row"  style="text-align: center; vertical-align: middle;" >2</th>
+                                    <td>
+                                  <p><span style="text-decoration: underline;"><strong>Acute Oral Toxicity</strong></span></p>
+                                  <p style="font-size:14px"><strong> Assay type</strong>: Acute oral toxicity test (OECD TG 401, 420, 423 and 425)</p>
+                                  <p style="font-size:14px"><strong>Animal</strong>: Rat</p>
+                                  <p style="font-size:14px"><strong>Machine Learning Algorithm</strong>: Random Forest</p>
+                                  <p style="font-size:14px"><strong> Descriptors</strong>: MACCS</p>
+                                  <p style="font-size:14px"><strong>Dataset</strong>: 8495 compounds</p>
+                                </td>
+                                     {% if cls_result_oral == "Toxic (+)" %}
+                                      <td align="center" class="Toxic (+)"> <font size="4" color="#C70039" ><strong> {{ cls_result_oral }} </strong></font></td>
+                                      {% else %}
+                                      <td align="center" class="Non-Toxic (-)"> <font size="4" color="#008000" ><strong> {{cls_result_oral}} </strong></font></td>
+                                      {% endif %}
+                                    <td> {{proba_oral}} </td>
+                                    <td> {{AD_oral}} <br> (Value=  {{AD_Acute_oral}}  and limit = {{limit_Acute_oral}} ) </td>
+                                    <td><img class="center-block" src="data:image/png;base64,{{ fname_oral }}" height="400" width="400" alt="IMAGE" class="img-results"></td>
+
+                                  </tr>
+                                  <tr>
+                                    <th scope="row"  style="text-align: center; vertical-align: middle;" >3</th>
+                                    <td>
+                                  <p><span style="text-decoration: underline;"><strong>Acute Dermal Toxicity</strong></span></p>
+                                  <p style="font-size:14px"><strong> Assay type</strong>: Dermal toxicity test (OECD TG 402)</p>
+                                  <p style="font-size:14px"><strong>Animal</strong>: Rabbit and Rat</p>
+                                  <p style="font-size:14px"><strong>Machine Learning Algorithm</strong>: Random Forest</p>
+                                  <p style="font-size:14px"><strong> Descriptors</strong>: MACCS</p>
+                                  <p style="font-size:14px"><strong>Dataset</strong>: 1884 compounds</p>
+                                </td>
+                                     {% if cls_dermal == "Toxic (+)" %}
+                                      <td align="center" class="Toxic (+)"> <font size="4" color="#C70039" ><strong> {{ cls_dermal }} </strong></font></td>
+                                      {% else %}
+                                      <td align="center" class="Non-Toxic (-)"> <font size="4" color="#008000" ><strong> {{cls_dermal}} </strong></font></td>
+                                      {% endif %}
+                                    <td> {{proba_dermal}} </td>
+                                    <td> {{AD_dermal}} <br> (Value=  {{AD_Acute_dermal}}  and limit = {{limit_Acute_dermal}} ) </td>
+                                    <td><img class="center-block" src="data:image/png;base64,{{ fname_dermal }}" height="400" width="400" alt="IMAGE" class="img-results"></td>
+
+
+                                  </tr>
+                                <tr>
+                                    <th scope="row"  style="text-align: center; vertical-align: middle;" >4</th>
+                                    <td>
+                                  <p><span style="text-decoration: underline;"><strong>Eye Irritation and Corrosion</strong></span></p>
+                                  <p style="font-size:14px"><strong> Assay type</strong>: Draize test (OECD TG 405)</p>
+                                  <p style="font-size:14px"><strong>Animal</strong>: Rabbit</p>
+                                  <p style="font-size:14px"><strong>Machine Learning Algorithm</strong>: Random Forest</p>
+                                  <p style="font-size:14px"><strong> Descriptors</strong>: MACCS</p>
+                                  <p style="font-size:14px"><strong>Dataset</strong>: 3547 compounds</p>
+                                </td>
+                                     {% if  cls_eye == "Toxic (+)" %}
+                                      <td align="center" class="Toxic (+)"> <font size="4" color="#C70039" ><strong> {{ cls_eye }} </strong></font></td>
+                                      {% else %}
+                                      <td align="center" class="Non-Toxic (-)"> <font size="4" color="#008000" ><strong> {{cls_eye}} </strong></font></td>
+                                      {% endif %}
+                                    <td> {{proba_eye}} </td>
+                                    <td> {{AD_eye}} <br> (Value=  {{AD_eye_irrit}}  and limit = {{ limit_eye_irrit }} ) </td>
+                                    <td><img class="center-block" src="data:image/png;base64,{{ fname_eye }}" height="400" width="400" alt="IMAGE" class="img-results"></td>
+
+                                  </tr>
+
+                                  <tr>
+                                      <th scope="row"  style="text-align: center; vertical-align: middle;" >5</th>
+                                        <td>
+                                      <p><span style="text-decoration: underline;"><strong>Skin Sensitization</strong></span></p>
+                                      <p style="font-size:14px"><strong> Assay type</strong>: LLNA test (OECD TG 429 and 442)</p>
+                                      <p style="font-size:14px"><strong>Animal</strong>: Mouse and Guinea Pig</p>
+                                      <p style="font-size:14px"><strong>Machine Learning Algorithm</strong>: Random Forest</p>
+                                      <p style="font-size:14px"><strong> Descriptors</strong>: Morgan EFCP4 with bit-vector size of 2048 bits</p>
+                                      <p style="font-size:14px"><strong>Dataset</strong>: 1000 compounds</p>
+                                    </td>
+                                       {% if  cls_SS_LLNA == "Sensitizer (+)" %}
+                                        <td align="center" class="Sensitizer (+)"> <font size="4" color="#C70039" ><strong> {{ cls_SS_LLNA }} </strong></font></td>
+                                        {% else %}
+                                        <td align="center" class="Non-Sensitizer (-)"> <font size="4" color="#008000" ><strong> {{cls_SS_LLNA}} </strong></font></td>
+                                        {% endif %}
+                                      <td> {{proba_SS_LLNA}} </td>
+                                      <td> {{AD_SS_LLNA}} <br> (Value=  {{AD_SS_LLNA_va }}  and limit = {{ limit_SS_LLNA }} ) </td>
+                                      <td><img class="center-block" src="data:image/png;base64,{{ fname_SS_LNNA }}" height="400" width="400" alt="IMAGE" class="img-results"></td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th scope="row"  style="text-align: center; vertical-align: middle;" >6</th>
+                                        <td>
+                                          <p><span style="text-decoration: underline;"><strong>Skin Irritation and Corrosion</strong></span></p>
+                                          <p style="font-size:14px"><strong> Assay type</strong>: Draizetest (OECD TG 404)</p>
+                                          <p style="font-size:14px"><strong>Animal</strong>: Rabbit</p>
+                                          <p style="font-size:14px"><strong>Machine Learning Algorithm</strong>: Random Forest</p>
+                                          <p style="font-size:14px"><strong> Descriptors</strong>: Morgan EFCP4 with bit-vector size of 1024 bits</p>
+                                          <p style="font-size:14px"><strong>Dataset</strong>: 1012 compounds</p>
+                                        </td>
+
+                                         {% if  cls_result_SI == "Sensitizer (+)" %}
+                                          <td align="center" class="Postive (+)"> <font size="4" color="#C70039" ><strong> {{ cls_result_SI }} </strong></font></td>
+                                          {% else %}
+                                          <td align="center" class="Negative (-)"> <font size="4" color="#008000" ><strong> {{cls_result_SI}} </strong></font></td>
+                                          {% endif %}
+                                        <td> {{proba_SI}} </td>
+                                        <td> {{AD_SI}} <br> (Value=  {{AD_SI_va }}  and limit = {{ limit_SI }} ) </td>
+                                        <td><img class="center-block" src="data:image/png;base64,{{ fname_SI }}" height="400" width="400" alt="IMAGE" class="img-results"></td>
+
+                                      </tr>
+
+                                      <tr>
+                                          <th scope="row"  style="text-align: center; vertical-align: middle;" >7</th>
+                                          <td>
+                                            <p><span style="text-decoration: underline;"><strong>Consensus</strong></span></p>
+
+                                          </td>
+
+                                           {% if  consensus == "Toxic (+)" %}
+                                            <td align="center" class="Toxic (+)"> <font size="4" color="#C70039" ><strong> {{ consensus }} </strong></font></td>
+                                            {% else %}
+                                            <td align="center" class="Non-Toxic (-)"> <font size="4" color="#008000" ><strong> {{consensus}} </strong></font></td>
+                                            {% endif %}
+                                          <td> {{consensus_proba}} <br> (an agreement based on the confidence)</td>
+                                          <td> - </td>
+                                          <td>-</td>
+
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row"  style="text-align: center; vertical-align: middle;" >8</th>
+                                            <td>
+                                              <p><span style="text-decoration: underline;"><strong>Consensus AD</strong></span></p>
+
+                                            </td>
+
+                                             {% if  consensus_ad  == "Toxic (+)" %}
+                                              <td align="center" class="Toxic (+)"> <font size="4" color="#C70039" ><strong> {{ consensus_ad  }} </strong></font></td>
+                                              {% else %}
+                                              <td align="center" class="Non-Toxic (-)"> <font size="4" color="#008000" ><strong> {{consensus_ad}} </strong></font></td>
+                                              {% endif %}
+                                            <td> {{consensus_ad_proba}} <br> (an agreement based on the confidence) </td>
+                                            <td> Yes </td>
+                                            <td>-</td>
+
+                                          </tr>
+
+
+</section>
+
+<div class="container">
+<div class="row">
+
+<div class="col-md-3 col-xs-2  center-block">
+
+        <table border="0">
+          <tr valign="middle">
+            <td><p><a href="/">
+              <button  class="center-block btn btn-danger  ">>> PREDICT NEW COMPOUND << </button>
+            </a></p></td>
+            <td>  <form>
+
+  </form></td>
+          </tr>
+        </table>
+   </div></div></div>
+
+
+
+
+   <div class="container ">
+
+   <div class="row ">
+
+   <div class="col-md-12 col-md-offset-0 tex-justify">
+
+   <p align="justify"> <strong> Check our publications for more information:</strong></p>
+   <p align="justify">  <a href="https://pubs.acs.org/doi/10.1021/acs.jcim.7b00194" target="_blank"><strong>1.Pred-Skin: A fast and reliable tool to assess chemically-induced skin sensitization.</strong></a>Braga, R. C.; Alves, V. M.; Muratov, E. N.; Strickland, J.; Kleinstreuer, N.; Trospsha, A.; Andrade, C. H.  <em>J. Chem. Inf. Model.</em> <strong>2017</strong>, 57 (5), 1013-1017. </p>
+   <p align="justify"> <a href="https://pubs.acs.org/doi/10.1021/acssuschemeng.7b04220" target="_blank"> <strong>2.A Perspective and a New Integrated Computational Strategy for Skin Sensitization Assessment.</strong></a> VM Alves, SJ Capuzzi, RC Braga, J Borba, A Silva, T Luechtefeld, T Hartung, CH Andrade, EN Muratov, and A Tropsha.  <em>ACS Sustainable Chem. Eng.</em> <strong>2018</strong> Just Accepted.</p>
+
+       </div>
+
+   </div>
+   <br>
+    <!--jumbotron DEFAULT -->
+       <div class=" background-colored text-light">
+         <h3>Help us</h3>
+         <p align="justify">If this server was useful to you, please cite our work and help us maintaining this service up to date.</p>
+         </div>
+
+       <!--END: jumbotron DEFAULT -->
+   </div>
+
+
+               </div>
+
+
+           </section>
+
+
+
+
+      </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <!-- FOOTER -->
+        <footer class="background-dark text-grey" id="footer">
+            <div class="footer-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="footer-logo float-left">
+                                <img alt="" src="{{ url_for('static', filename='images/LabMol-LOGO-black-300dpi.png') }}">
+                            </div>
+                            <p style="margin-top: 12px;">The Laboratory for Molecular Modeling and Drug Design was established in March 2009, at the Faculty of Pharmacy of the Federal University of Goiás. Our research group is focused on designing of new drug candidates for infectious diseases such as Chagas disease, schistosomiasis, leishmaniasis, malaria and tuberculosis, as well as for cancer. Another important goal of our group is the development of predictive models for pharmacokinetics and toxicity properties. The work developed by our group has resulted in publications in international indexed journals, abstracts, dissertations and awards in national and international meetings of Medicinal and Computational Chemistry area.
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="seperator seperator-dark seperator-simple"></div>
+                    <div class="row">
+
+
+                        <div class="col-md-4">
+                            <div class="widget clearfix widget-contact-us" style="background-image: url('images/world-map.png'); background-position: 50% 55px; background-repeat: no-repeat">
+                                <h4 class="widget-title">Contact us</h4>
+                                <ul class="list-large list-icons">
+                                    <li><i class="fa fa-map-marker"></i>
+                                        <strong>Address:</strong> Rua 240, Qd. 87, Setor Leste
+                                        <br>Universitário, Goiânia, Goiás, Brazil 74605-170.</li>
+                                    <li><i class="fa fa-phone"></i><strong>Phone:</strong> (+55) 62 3209-6451 </li>
+                                    <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:carolina@ufg.br">carolina@ufg.br</a>
+                                    </li>
+                                    <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 18:00</strong>
+                                        <br>Saturday, Sunday: <strong>Closed</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="widget clearfix widget-tweeter">
+     <h4 class="widget-title">Recent Tweets</h4>
+</div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="widget clearfix widget-newsletter">
+                                <form id="widget-subscribe-form" action="include/subscribe-form.php" role="form" method="post" class="form-inline">
+                                    <h4 class="widget-title">Newsletter</h4>
+                                    <small>Stay informed on our latest news!</small>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                                        <input type="email" aria-required="true" name="widget-subscribe-form-email" class="form-control required email" placeholder="Enter your Email">
+                                        <span class="input-group-btn">
+                                            <button type="submit" id="widget-subscribe-submit-button" class="btn btn-primary">Subscribe</button>
+                                        </span>
+                                    </div>
+                                </form>
+                                <script type="text/javascript">
+                                    jQuery("#widget-subscribe-form").validate({
+                                        submitHandler: function(form) {
+                                            jQuery(form).ajaxSubmit({
+                                                dataType: 'json',
+                                                success: function(text) {
+                                                    if (text.response == 'success') {
+                                                        $.notify({
+                                                            message: "You have successfully subscribed to our mailing list."
+                                                        }, {
+                                                            type: 'success'
+                                                        });
+                                                        $(form)[0].reset();
+
+                                                    } else {
+                                                        $.notify({
+                                                            message: text.message
+                                                        }, {
+                                                            type: 'warning'
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                  </script>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="copyright-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="copyright-text col-md-6"> &copy; 2016 LABMOL. ALL RIGHTS RESERVED. DESIGNED BY RODOLPHO C. BRAGA.
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-icons">
+                                <ul>
+                                    <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="social-google"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li class="social-pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    <li class="social-vimeo"><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+                                    <li class="social-linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li class="social-youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                                    <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END: FOOTER -->
+
+    </div>
+    <!-- END: WRAPPER -->
+
+    <!-- GO TOP BUTTON -->
+    <a class="gototop gototop-button" href="#"><i class="fa fa-chevron-up"></i></a>
+
+ <!-- REVOLUTION JS FILES -->
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
+
+
+  <!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.carousel.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.migration.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.video.min.js') }}"></script>
+
+           <script type="text/javascript">
+                        var tpj=jQuery;
+
+            var revapi24;
+            tpj(document).ready(function() {
+                if(tpj("#rev_slider_24_1").revolution == undefined){
+                    revslider_showDoubleJqueryError("#rev_slider_24_1");
+                }else{
+                    revapi24 = tpj("#rev_slider_24_1").show().revolution({
+                        sliderType:"standard",
+jsFileLocation:"{{ url_for('static', filename='vendor/rs-plugin/js/') }}",
+                        sliderLayout:"fullscreen",
+                        dottedOverlay:"none",
+                        delay:9000,
+                        navigation: {
+                            keyboardNavigation:"on",
+                            keyboard_direction: "vertical",
+                            mouseScrollNavigation:"on",
+                             mouseScrollReverse:"default",
+                            onHoverStop:"off",
+                            touch:{
+                                touchenabled:"on",
+                                swipe_threshold: 75,
+                                swipe_min_touches: 50,
+                                swipe_direction: "vertical",
+                                drag_block_vertical: false
+                            }
+                        },
+                        responsiveLevels:[1240,1024,778,480],
+                        visibilityLevels:[1240,1024,778,480],
+                        gridwidth:[1400,1240,778,480],
+                        gridheight:[868,768,960,720],
+                        lazyType:"none",
+                        shadow:0,
+                        spinner:"spinner2",
+                        stopLoop:"on",
+                        stopAfterLoops:0,
+                        stopAtSlide:1,
+                        shuffle:"off",
+                        autoHeight:"off",
+                        fullScreenAutoWidth:"off",
+                        fullScreenAlignForce:"off",
+                        fullScreenOffsetContainer: "",
+                        fullScreenOffset: "",
+                        disableProgressBar:"on",
+                        hideThumbsOnMobile:"off",
+                        hideSliderAtLimit:0,
+                        hideCaptionAtLimit:0,
+                        hideAllCaptionAtLilmit:0,
+                        debugMode:false,
+                        fallbacks: {
+                            simplifyAll:"off",
+                            nextSlideOnWindowFocus:"off",
+                            disableFocusListener:false,
+                        }
+                    });
+                }
+            }); /*ready*/
+        </script>
+
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="{{ url_for('static', filename='js/theme-functions.js') }}"></script>
+
+    <!-- Custom js file -->
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+</body>
+
+</html>

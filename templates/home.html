@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>STopTox 1.0 | Home </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/fontawesome/css/font-awesome.min.css') }}" type="text/css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/animateit/animate.min.css') }}" rel="stylesheet">
+
+    <!-- Vendor css -->
+    <link href="{{ url_for('static', filename='vendor/owlcarousel/owl.carousel.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='vendor/magnific-popup/magnific-popup.css') }}" rel="stylesheet">
+
+    <!-- Template base -->
+    <link href="{{ url_for('static', filename='css/theme-base.css') }}" rel="stylesheet">
+
+    <!-- Template elements -->
+    <link href="{{ url_for('static', filename='css/theme-elements.css') }}" rel="stylesheet">
+
+    <!-- Responsive classes -->
+    <link href="{{ url_for('static', filename='css/responsive.css') }}" rel="stylesheet">
+
+    <!--[if lt IE 9]>
+		<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+	<![endif]-->
+
+
+
+
+    <!-- Template color -->
+    <link href="{{ url_for('static', filename='css/color-variations/blue.css') }}" rel="stylesheet" type="text/css" media="screen" title="blue">
+
+    <!-- LOAD GOOGLE FONTS -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,800,700,600%7CRaleway:100,300,600,700,800" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome/css/font-awesome.min.css') }}"
+
+    <!-- CSS CUSTOM STYLE -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}" media="screen" />
+
+    <!--VENDOR SCRIPT-->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery-1.11.2.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/plugins-compressed.js') }}"></script>
+
+    <!-- REVOLUTION LAYERS STYLES -->
+	<style>
+    </style>
+    <style>.tp-caption.WebProduct-Title,.WebProduct-Title{color:rgba(51,51,51,1.00);font-size:90px;line-height:90px;font-weight:100;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px}.tp-caption.WebProduct-SubTitle,.WebProduct-SubTitle{color:rgba(153,153,153,1.00);font-size:15px;line-height:20px;font-weight:400;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px}.tp-caption.WebProduct-Content,.WebProduct-Content{color:rgba(153,153,153,1.00);font-size:16px;line-height:24px;font-weight:600;font-style:normal;font-family:Raleway;padding:0 0 0 0px;text-decoration:none;background-color:transparent;border-color:transparent;border-style:none;border-width:0px;border-radius:0 0 0 0px}</style>
+    <style type="text/css">	#rev_slider_4_1_wrapper .tp-loader.spinner2{ background-color: #FFFFFF !important; } </style>
+	<style type="text/css">.hephaistos .tp-bullet{width:12px;height:12px;position:absolute;background:rgba(153,153,153,1);border:3px solid rgba(255,255,255,0.9);border-radius:50%;cursor:pointer;box-sizing:content-box;  box-shadow:0px 0px 2px 1px rgba(130,130,130,0.3)}.hephaistos .tp-bullet:hover,.hephaistos .tp-bullet.selected{background:rgba(255,255,255,1);  border-color:rgba(0,0,0,1)}</style>
+
+
+    <!-- SLIDER REVOLUTION 5.x CSS SETTINGS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/rs-plugin/css/layers.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/rs-plugin/css/navigation.css') }}">
+
+    <!-- CSS CUSTOM STYLE -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/settings.css') }}">
+
+
+  <script type="text/javascript" language="javascript" src="{{ url_for('static', filename='js/jsme/jsme.nocache.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+<script>
+
+
+function saveJMECookie() {
+  var jme = document.JME.jmeFile();
+  document.cookie = "jme="+jme+";expires=Thu, 31 Dec 2020 00:00:00 GMT; path=/";
+}
+
+function readJMECookie() {
+  var editor = document.JME;
+  if (editor.smiles().length > 0) return; // editing already started
+  var ca = document.cookie.split(';');
+  for(var i=0;i < ca.length;i++) {
+    var c = ca[i];
+    while (c.charAt(0)==' ') c = c.substring(1,c.length);
+    if (c.indexOf("jme=") == 0) {
+      var jme = c.substring(4,c.length);
+      editor.readMolecule(jme);
+      return;
+    }
+  }
+}
+
+function ShowLoading(e) {
+    var div = document.createElement('div');
+    var img = document.createElement('img');
+    img.src = '{{ url_for('static', filename='images/hourglass.svg') }}';
+    div.innerHTML = "Predicting...<br/>";
+    div.style.cssText = 'position: fixed; top: 40%; left: 40%; z-index: 5000; width: 300px; text-align: center; background-color:pink;font-size:55px;border:3px dashed green;color:black;';
+    div.appendChild(img);
+    document.body.appendChild(div);
+    return true;
+        // These 2 lines cancel form submission, so only use if needed.
+        //window.event.cancelBubble = true;
+        //e.stopPropagation();
+}
+
+
+function submit(type) {
+  var jmesmiles = document.JME.smiles();
+  var boxsmiles = document.getElementById("smilesbox").value;
+  if (jmesmiles.length < 1 && boxsmiles.length < 1) {
+    alert("No molecule !");
+    return;
+  }
+  if (jmesmiles.length > 500 || boxsmiles.length > 500) {
+    alert("Cannot process polymers!");
+    return;
+  }
+
+  // smiles/name text has preference
+  var smiles = jmesmiles;
+ // document.form.source.value = "jme";
+  if (boxsmiles.length > 0) {
+    smiles = boxsmiles;
+
+    //document.JME.clear();
+  //  document.form.source.value = "text";
+  }
+
+
+  document.form.smiles.value = smiles;
+ // document.getElementById( "smi" ).value = smiles;
+  document.form.submit();
+}
+
+function urlencode(e) {
+  e = e.toString();
+  e = encodeURIComponent(e);
+  e = e.replace(/%20/g, '+');
+  return e;
+}
+
+function jsmeOnLoad() {
+
+jsmeApplet = new JSApplet.JSME("appletContainer", "460px", "340px", {
+"options" : "hydrogens" });
+
+document.JME = jsmeApplet;
+readJMECookie();
+document.getElementById("smilesbox").value="";
+}
+
+
+
+
+
+
+</script>
+
+
+
+
+<style type="text/css">
+
+
+.table > tbody > tr > td {
+     vertical-align: middle;
+}
+
+
+
+
+.loading img{
+    float: right;
+}
+
+
+/* General CSS rules for every viewport, including large desktop screens */
+
+#main-img {
+
+    width: 100%;
+    height: auto;
+}
+
+
+@media screen and (max-width: 480px) {
+    #main-img{content:url("{{ url_for('static', filename='Pred-Skin-logo-480.png') }}") ;}
+    #main-img:after{content:url("{{ url_for('static', filename='Pred-Skin-logo-480.png') }}") ;}
+    body{ font-size: 9px;}
+}
+
+@media only screen  and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) {
+    #main-img{content:url("{{ url_for('static', filename='Pred-Skin-logo-568.png') }}") ;}
+    #main-img:after{content:url("{{ url_for('static', filename='Pred-Skin-logo-568.png') }}") ;}
+}
+
+
+@media screen and (min-width: 768px) {
+    #main-img{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+    #main-img:after{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+    body{ font-size: 14px;}
+}
+@media (min-width: 992px) {
+      #main-img{content:url("{{ url_for('static', filename='Pred-Skin-logo.png') }}") ;}
+      #main-img:after{content:url("{{ url_for('static', filename='Pred-Skin-logo.png') }}") ;}
+}
+@media (min-width: 1200px) {
+     #main-img{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+     #main-img:after{content: url("{{ url_for('static', filename='Pred-Skin-logo.png') }}");}
+     body{ font-size: 16px;}
+}
+
+</style>
+
+
+</head>
+
+<body class="wide">
+
+
+    <!-- WRAPPER -->
+    <div class="wrapper">
+
+        <!-- HEADER --><header id="header" class="">
+            <div id="header-wrap">
+                <div class="container">
+
+                    <!--LOGO-->
+                    <div id="logo">
+                        <a href="http://labmol.com.br" class="logo" data-dark-logo="{{ url_for('static', filename='images/logo-dark.png') }}">
+                            <img src="{{ url_for('static', filename='images/LabMol-LOGO-site.png') }}" alt="Polo Logo">
+                        </a>
+                    </div>
+                    <!--END: LOGO-->
+
+                    <!--MOBILE MENU -->
+                    <div class="nav-main-menu-responsive">
+                        <button class="lines-button x">
+                            <span class="lines"></span>
+                        </button>
+                    </div>
+                    <!--END: MOBILE MENU -->
+
+
+
+                    <!--TOP SEARCH -->
+                    <div id="top-search"> <a id="top-search-trigger"><i class="fa fa-search"></i><i class="fa fa-close"></i></a>
+                        <form action="search-results-page.html" method="get" data-toggle="validator">
+                            <input type="text" name="q" id="q" class="form-control" value="" placeholder="Start typing & press  &quot;Enter&quot;" required>
+                        </form>
+
+
+
+
+                    </div>
+                    <!--END: TOP SEARCH -->
+
+                    <!--NAVIGATION-->
+                    <div class="navbar-collapse collapse main-menu-collapse navigation-wrap">
+                        <div class="container">
+                            <nav id="mainMenu" class="main-menu mega-menu">
+                                <ul class="main-menu nav nav-pills">
+                                    <li><a href="hhttp://labmol.com.br"><i class="fa fa-home"></i></a></li>
+                                    <li><a href="http://www.labmol.com.br/research/">Research</a></li>
+                                    <li><a href="http://www.labmol.com.br/our-team/">Our Team</a></li>
+                                    <li class="dropdown"> <a href="http://www.labmol.com.br/web-apps/">Web Apps<span class="label label-danger infinit">HOT</span><i class="fa fa-angle-down"></i></a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                            <a href="http://www.labmol.com.br/predherg"> <i class="fa fa-heartbeat"></i>Pred-hERG <span class="label label-success">POPULAR</span></a>
+                                            </li>
+                                            <li>
+                                            <a href="http://www.labmol.com.br/predskin"> <i class="fa fa-warning"></i>Pred-Skin <span class="label label-success">POPULAR</span></a>
+                                            </li>
+                                            <li>
+                                            <a href="http://www.labmol.com.br/stoptox"> <i class="fa fa-warning"></i>STopTox <span class="label label-default">NEW</span></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+
+                                    <li><a href="http://www.labmol.com.br/publications/">Publications</a></li>
+                                    <li><a href="http://www.labmol.com.br/get-in-touch/">Get in Touch</a></li>
+                                    <li><a href="http://www.labmol.com.br/news/">News</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <!--END: NAVIGATION-->
+                </div>
+            </div>
+        </header>
+        <!-- END: HEADER -->
+
+
+                <!-- INSPIRO SLIDER -->
+                <div id="slider" class="inspiro-slider" data-height-xs="360">
+                    <!-- Slide 1 -->
+                    <div class="slide" style="background-image:url('{{ url_for('static', filename='homepages/corporate-v8/images/slider/logo.png') }}');">
+                        <div class="container">
+                            <div class="slide-captions text-dark">
+                                <!-- Captions -->
+                                <h1 data-caption-animation="rotateInUpLeft">STopTox <sub>1.0</sub></h1>
+                                <h3 data-caption-animation="rotateInUpLeft" data-caption-delay="700">a machine learning app to assess the battery of acute <br> toxicity tests classically known as the “6-pack"</h3>
+                                <!-- End: Captions -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END: Slide 1 -->
+
+
+                </div>
+                <!-- END: INSPIRO SLIDER -->
+
+
+        <!-- Services -->
+        <section class="p-b-40">
+            <div class="container">
+                <div class="row">
+                    <!-- features box -->
+                    <div class="col-md-4">
+                        <h4><i class="fa fa-heart"></i> Powerful </h4>
+                        <p>STopTox app is based on statistically significant and externally predictive QSAR models of acute toxicity endpoints. The models were built using the largest properly curated database containing experimental data for each of the “6-pack” endpoints. So far, it is the only tool available for predicting all six acute toxicity tests that was developed using a highly curated dataset and following the best practices of development and validation of QSAR models.</p>
+                    </div>
+                    <!-- End: features box -->
+
+                    <!-- features box -->
+                    <div class="col-md-4">
+                        <h4><i class="fa fa-gear"></i> Machine learning Technology</h4>
+                        <p>Developed as a tool for identify putative acute systemic and topical toxicants. The models showed high predictive power with vigorous validation metrics, achieving balanced accuracy, sensitivity, and specificity ranging from 71 to 94%.</p>
+                    </div>
+                    <!-- End: features box -->
+
+                    <!-- features box -->
+                    <div class="col-md-4">
+                        <h4><i class="fa fa-plug"></i>  Probability Maps</h4>
+                        <p>The probability maps allow the visualization of predicted fragment contribution. This method provides an easy interpretation of the predicted activity, allowing the user to easily propose structural modifications.</p>
+                    </div>
+                    <!-- End: features box -->
+                </div>
+
+            </div>
+        </section>
+        <!-- End: Services -->
+
+<!-- Pred Single Molecule -->
+        <section class="background-grey">
+            <div class="container">
+                <div class="text-center m-b-50">
+                    <h1 class="text-medium">Predict a single molecule</h1>
+                    <p></p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-1" data-animation="fadeInUp" data-animation-delay="1000">
+                    </div>
+                    <div class="col-md-5" data-animation="fadeInUp" data-animation-delay="1000">
+                        <div class="m-t-0">
+
+
+
+                    <div class="icon-box  effect small light"" data-animation="fadeInLeft" data-animation-delay="0">
+                            <div class="icon effect small color">
+                                <a href="#"><i class="fa fa-wrench"></i></a>
+                            </div>
+                            <h3>Instructions</h3>
+                            <p> <br></p>
+                        </div>
+
+                    <div class="icon-box  effect small light"" data-animation="fadeInLeft" data-animation-delay="0">
+                            <div class="icon effect small color">
+                                <a href="#"><i class="fa fa-copy"></i></a>
+                            </div>
+                            <h3>Insert SMILES</h3>
+                            <p> Directly paste the SMILES representation of the desired chemical structure. </p>
+                        </div>
+
+
+                    <div class="icon-box  effect small light"" data-animation="fadeInLeft" data-animation-delay="0">
+                            <div class="icon effect small color">
+                                <a href="#"><i class="fa  fa-pencil-square-o"></i></a>
+                            </div>
+                            <h3>or Draw</h3>
+                            <p align="center"> Draw the structure using the "Molecular Editor".</p>
+                        </div>
+
+                    <div class="icon-box  effect small light"" data-animation="fadeInLeft" data-animation-delay="0">
+                            <div class="icon effect small color">
+                                <a href="#"><i class="fa  fa-database"></i></a>
+                            </div>
+                            <h3>or Load a file</h3>
+                            <p align="center"> Click the right button on the whiteboard of the "Molecular Editor" and select "Paste MOL or SDF or SMILES"." SDF and MOL files are accepted.</p>
+                        </div>
+
+
+                    <div class="icon-box  effect small light"" data-animation="fadeInLeft" data-animation-delay="0">
+                            <div class="icon effect small color">
+                                <a href="#"><i class="fa fa-paper-plane"></i></a>
+                            </div>
+                            <h3>Predict</h3>
+                            <p align="center">Click on the “Predict STopTox” button.</p>
+                        </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+
+                        <div class="form-group">
+                              <label for="name"> <font style="text-transform: capitalize;"><h4>Enter SMILES</h4></font></label>
+                        <input type="text" id="smilesbox"  aria-required="true" name="widget-contact-form-name" class="form-control required name" placeholder="Paste a SMILES string here">
+                        </div>
+                        <body bgcolor='#FFFFFF' onUnload='saveJMECookie()'>
+
+
+                    <div class="text-box" data-animation="fadeInUp" data-animation-delay="0" id="appletContainer">
+                            <h4>Draw molecule or load a file</h4>
+                        </div>
+
+                            <div class="text-box" data-animation="fadeInUp" data-animation-delay="0">
+                            <a  class="text-center red-dark button border fullwidth rounded ";" onClick="return !!(ShowLoading() & submit('pr'));";><span><i class="fa fa-chevron-circle-right"></i> Predict STopTox<label></label></span></a>
+
+                        </div>
+
+
+                        <form action="predict" name="form"   method="POST">
+                        <input type="hidden"  name="smiles" id="smiles" ">
+
+                        </form>   </div>
+                    </div>
+
+
+                    <div class="text-center">
+                    <a  href="#bulk" class="scroll-to"><i class="fa fa-chevron-down fa-2x"></i></a>
+                </div>
+            </div>
+
+        </section>
+        <!-- Pred Single Molecule -->
+
+
+
+
+
+
+		<!-- END: TEAM -->
+
+        <!-- SIMPLE, IT'S GREAT APP -->
+        <section id="Charac" >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 m-b-30" style="height:556px">
+                        <div class="image-absolute" data-animation="fadeInLeft" data-animation-delay="400">
+                            <img src="{{ url_for('static', filename='images/ef836a1f-8881-4ed0-9cab-db907463cd77.jpg') }}" alt="">
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-7" data-animation="fadeInUp" data-animation-delay="1000">
+                        <div class="m-b-40">
+                            <h1 class="text-medium">APP CHARACTERISTICS </h1>
+                            <span class="lead">The STopTox app is a fast, reliable, and user-friendly tool available as an alternative method for assessing the potential of chemicals to cause acute toxicity.The acute toxicity tests are used to identify hazard potentials resulting from short exposure times. The battery of in vivo assayscommonlyknown as “6 pack” assays are required by many regulatory agencies to evaluate several aspectsof acute toxicity in humans, including acute oral toxicity, acute dermal toxicity, acute inhalation toxicity, skin irritation and corrosion, eye irritation and corrosion, and skin sensitization. The indiscriminate use of animals in laboratory tests have been a public and political concern. Despite some progress in developing alternative methods for assessing the toxicity potential of chemical substances, there are few in vitro testsdeveloped to address all “6-pack” endpoints. Machine Learning (ML) models provide a rapid screening approach and contribute valuable information for the assessment of chemical toxicity. The app provides easy and reliablemeans for end users to make predictions using externally validated QSAR models for each of the “6-pack” tests based on experimental animal data. The predictions for a single compound run in a few seconds and the app does not require computational of programming skills from the user.
+                </span>
+
+                </div>
+            <div class="text-center">
+                <a href="#Features.tag" class="scroll-to"><i class="fa fa-chevron-down fa-2x"></i></a>
+            </div>
+            </div>
+
+
+        <!-- FOOTER -->
+        <footer class="background-dark text-grey" id="footer">
+            <div class="footer-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="footer-logo float-left">
+                                <img alt="" src="{{ url_for('static', filename='images/LabMol-LOGO-black-300dpi.png') }}">
+                            </div>
+                            <p style="margin-top: 12px;">The Laboratory for Molecular Modeling and Drug Design was established in March 2009, at the Faculty of Pharmacy of the Federal University of Goiás. Our research group is focused on designing of new drug candidates for infectious diseases such as Chagas disease, schistosomiasis, leishmaniasis, malaria and tuberculosis, as well as for cancer. Another important goal of our group is the development of predictive models for pharmacokinetics and toxicity properties. The work developed by our group has resulted in publications in international indexed journals, abstracts, dissertations and awards in national and international meetings of Medicinal and Computational Chemistry area.
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="seperator seperator-dark seperator-simple"></div>
+                    <div class="row">
+
+
+                        <div class="col-md-4">
+                            <div class="widget clearfix widget-contact-us" style="background-image: url('images/world-map.png'); background-position: 50% 55px; background-repeat: no-repeat">
+                                <h4 class="widget-title">Contact us</h4>
+                                <ul class="list-large list-icons">
+                                    <li><i class="fa fa-map-marker"></i>
+                                           <strong>Address:</strong> Rua 240, Qd. 87, Setor Leste
+                                        <br>Universitário, Goiânia, Goiás, Brazil 74605-170.</li>
+                                    <li><i class="fa fa-phone"></i><strong>Phone:</strong> (+55) 62 3209-6451 </li>
+                                    <li><i class="fa fa-envelope"></i><strong>Email:</strong> <a href="mailto:carolina@ufg.br">carolina@ufg.br</a>
+                                    </li>
+                                    <li><i class="fa fa-clock-o"></i>Monday - Friday: <strong>08:00 - 18:00</strong>
+                                        <br>Saturday, Sunday: <strong>Closed</strong>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="widget clearfix widget-tweeter">
+     <h4 class="widget-title">Recent Tweets</h4>
+</div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="widget clearfix widget-newsletter">
+                                <form id="widget-subscribe-form" action="include/subscribe-form.php" role="form" method="post" class="form-inline">
+                                    <h4 class="widget-title">Newsletter</h4>
+                                    <small>Stay informed on our latest news!</small>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                                        <input type="email" aria-required="true" name="widget-subscribe-form-email" class="form-control required email" placeholder="Enter your Email">
+                                        <span class="input-group-btn">
+											<button type="submit" id="widget-subscribe-submit-button" class="btn btn-primary">Subscribe</button>
+										</span>
+                                    </div>
+                                </form>
+                                <script type="text/javascript">
+                                    jQuery("#widget-subscribe-form").validate({
+                                        submitHandler: function(form) {
+                                            jQuery(form).ajaxSubmit({
+                                                dataType: 'json',
+                                                success: function(text) {
+                                                    if (text.response == 'success') {
+                                                        $.notify({
+                                                            message: "You have successfully subscribed to our mailing list."
+                                                        }, {
+                                                            type: 'success'
+                                                        });
+                                                        $(form)[0].reset();
+
+                                                    } else {
+                                                        $.notify({
+                                                            message: text.message
+                                                        }, {
+                                                            type: 'warning'
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                        }
+                                    });
+                                  </script>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="copyright-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="copyright-text col-md-6"> &copy; 2016 LABMOL. ALL RIGHTS RESERVED. DESIGNED BY RODOLPHO C. BRAGA.
+                        </div>
+                        <div class="col-md-6">
+                            <div class="social-icons">
+                                <ul>
+                                    <li class="social-facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                    <li class="social-twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                    <li class="social-google"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                                    <li class="social-pinterest"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                    <li class="social-vimeo"><a href="#"><i class="fa fa-vimeo-square"></i></a></li>
+                                    <li class="social-linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                    <li class="social-dribbble"><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                    <li class="social-youtube"><a href="#"><i class="fa fa-youtube-play"></i></a></li>
+                                    <li class="social-rss"><a href="#"><i class="fa fa-rss"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END: FOOTER -->
+
+    </div>
+    <!-- END: WRAPPER -->
+
+    <!-- GO TOP BUTTON -->
+    <a class="gototop gototop-button" href="#"><i class="fa fa-chevron-up"></i></a>
+
+ <!-- REVOLUTION JS FILES -->
+    <script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
+
+
+	<!-- SLIDER REVOLUTION 5.0 EXTENSIONS  (Load Extensions only on Local File Systems !  The following part can be removed on Server for On Demand Loading) -->
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.actions.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.carousel.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.migration.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+	<script type="text/javascript" src="{{ url_for('static', filename='vendor/rs-plugin/js/extensions/revolution.extension.video.min.js') }}"></script>
+
+           <script type="text/javascript">
+                        var tpj=jQuery;
+
+            var revapi24;
+            tpj(document).ready(function() {
+                if(tpj("#rev_slider_24_1").revolution == undefined){
+                    revslider_showDoubleJqueryError("#rev_slider_24_1");
+                }else{
+                    revapi24 = tpj("#rev_slider_24_1").show().revolution({
+                        sliderType:"standard",
+jsFileLocation:"{{ url_for('static', filename='vendor/rs-plugin/js/') }}",
+                        sliderLayout:"fullscreen",
+                        dottedOverlay:"none",
+                        delay:9000,
+                        navigation: {
+                            keyboardNavigation:"on",
+                            keyboard_direction: "vertical",
+                            mouseScrollNavigation:"on",
+                             mouseScrollReverse:"default",
+                            onHoverStop:"off",
+                            touch:{
+                                touchenabled:"on",
+                                swipe_threshold: 75,
+                                swipe_min_touches: 50,
+                                swipe_direction: "vertical",
+                                drag_block_vertical: false
+                            }
+                        },
+                        responsiveLevels:[1240,1024,778,480],
+                        visibilityLevels:[1240,1024,778,480],
+                        gridwidth:[1400,1240,778,480],
+                        gridheight:[868,768,960,720],
+                        lazyType:"none",
+                        shadow:0,
+                        spinner:"spinner2",
+                        stopLoop:"on",
+                        stopAfterLoops:0,
+                        stopAtSlide:1,
+                        shuffle:"off",
+                        autoHeight:"off",
+                        fullScreenAutoWidth:"off",
+                        fullScreenAlignForce:"off",
+                        fullScreenOffsetContainer: "",
+                        fullScreenOffset: "",
+                        disableProgressBar:"on",
+                        hideThumbsOnMobile:"off",
+                        hideSliderAtLimit:0,
+                        hideCaptionAtLimit:0,
+                        hideAllCaptionAtLilmit:0,
+                        debugMode:false,
+                        fallbacks: {
+                            simplifyAll:"off",
+                            nextSlideOnWindowFocus:"off",
+                            disableFocusListener:false,
+                        }
+                    });
+                }
+            }); /*ready*/
+        </script>
+
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="{{ url_for('static', filename='js/theme-functions.js') }}"></script>
+
+    <!-- Custom js file -->
+    <script src="{{ url_for('static', filename='js/custom.js') }}"></script>
+
+</body>
+
+</html>
